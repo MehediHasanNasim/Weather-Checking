@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+
+    <br>
+
+    
+    {% if zipcode %}
+        {{ zipcode }}
+        
+    {% endif %}
+        
+ 
+    
+    {% if api %} 
+        
+        {% if api == "Error...." %}
+            There is some Error!!! 
+        {% else %}
+        <div class="jumbotron {{ category_color }}">
+            <h1 class="display-4"><b>Status: {{ api.0.Category.Name }}</b></h1>
+            <p class="lead"><b>Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</b> </p>
+            <p class="lead"><b>Searching Date: {{ api.1.DateObserved }}</b></p>
+
+            <b>{{ category_description }}</b>
+           
+ 
+        </div>
+         
+    
+            
+        {% endif %}
+
+    {% endif %}
+    <p><b>The zipcode's are only available for cities in United state in API </b></p>
+    <p><b>Example:</b></p>
+    
+    <li>chicago: 60007</li> 
+    <li> denver: 80014 </li>
+    <li>new york: 10001</li> 
+    <li>austin: 73301 </li> 
+    <li>seattle: 98101 </li> 
+    <li> boston: 02101 </li> 
+    <li>san francisco: 94016</li>
+        
+
+{% endblock body_block %}
+
+{% block extrajs %}
+<script>
+    $(document).ready(function () {
+      window.history.replaceState('', '', window.location.href);
+    });
+  </script>
+
+{% endblock extrajs %}
